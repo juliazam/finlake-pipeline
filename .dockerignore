@@ -1,0 +1,28 @@
+# Python virtual environment
+myenv/
+__pycache__/
+*.pyc
+
+# Git
+.git/
+.gitignore
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+
+# Environment secrets
+.env
+.env.local
+
+# IDE
+.vscode/
+
+# Airflow local artifacts
+dags/__pycache__/
+
+# Glue local test output
+glue/output.csv/
+
+start_transformation.txt

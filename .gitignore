@@ -1,0 +1,20 @@
+# Environment secrets
+.env
+.env.local
+
+# Python
+myenv/
+__pycache__/
+*.pyc
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfvars
+
+# Local test artifacts
+glue/output.csv/
+glue/test_data_raw.csv
+start_transformation.txt
+lambda/*.zip
