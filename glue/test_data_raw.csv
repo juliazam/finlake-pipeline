@@ -1,0 +1,4 @@
+transaction_id,account_id,amount,currency,status,merchant,payment_method,timestamp
+txn_test001,acc_001,50.00,SGD,completed,Test Merchant,card,2026-07-31T10:00:00Z
+txn_test002,acc_002,129.50,SGD,completed,NTUC FairPrice,paynow,2026-07-31T10:05:00Z
+txn_test003,acc_003,15.90,SGD,pending,Grab,grabpay,2026-07-31T10:10:00Z
