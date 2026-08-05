@@ -6,11 +6,15 @@ on:
     paths:
       - 'terraform/**'
       - 'glue/**'
+      - '.github/workflows/terraform-ci.yml'
+      - '.env.ci'
   pull_request:
     branches: [main]
     paths:
       - 'terraform/**'
       - 'glue/**'
+      - '.github/workflows/terraform-ci.yml'
+      - '.env.ci'
 
 jobs:
   terraform:
