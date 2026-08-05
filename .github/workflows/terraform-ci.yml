@@ -45,7 +45,11 @@ jobs:
         run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform fmt -check -recursive"
 
       - name: Bootstrap state bucket
-        run: docker run --rm --network container:ministack amazon/aws-cli --endpoint-url=http://ministack:4566 s3 mb s3://finlake-terraform-state
+        run: |
+          docker run --rm --network container:ministack \
+            -e AWS_ACCESS_KEY_ID=test \
+            -e AWS_SECRET_ACCESS_KEY=test \
+            amazon/aws-cli --endpoint-url=http://ministack:4566 s3 mb s3://finlake-terraform-state
 
       - name: Terraform validate
         run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init && terraform validate"
