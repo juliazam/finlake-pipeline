@@ -19,6 +19,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Copy CI env file
+        run: cp .env.ci .env
+
       - name: Start MiniStack
         run: docker compose up -d ministack
 
@@ -40,12 +43,8 @@ jobs:
       - name: Terraform validate
         run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init -backend=false && terraform validate"
 
-      - name: Terraform plan
-        run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init && terraform plan"
-
-      - name: Terraform apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init && terraform apply -auto-approve"
+      - name: Terraform plan (local state, CI-only)
+        run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init -backend=false && terraform plan"
 
       - name: Stop containers
         if: always()
