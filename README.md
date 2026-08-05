@@ -69,4 +69,4 @@ Alerting (Slack) fires on task failure or when the DAG exceeds its deadline.
 - **MiniStack does not execute real Spark jobs.** `aws_glue_job` and `GlueJobOperator` demonstrate real infrastructure provisioning and orchestration (API calls, polling, status checks), but the actual data transformation must be run manually against the official `aws-glue-libs` Docker image (see `docker compose --profile manual run glue-transform-test`) and the output uploaded to the `processed/` prefix.
 - **AWS provider pinned to `~> 5.0`.** Provider v6.23+ introduced an S3 Control tagging call (`ListTagsForResource`) that MiniStack does not emulate, causing `AccessDenied` errors on `plan`/`apply`.
 - **IAM roles are provisioned but not enforced** — MiniStack does not validate permissions the way real AWS IAM does.
-- **Sample data is small (3 rows)**, intended to demonstrate the pipeline end-to-end rather than at production volume.
+- **Sample data**: `glue/test_data_raw.csv` (3 rows, quick smoke test) and `glue/data_batch.csv` (5,000 rows, realistic volume) are both included.

@@ -137,7 +137,7 @@ services:
     command: >
       spark-submit /home/glue_user/workspace/transform_job.py
       --JOB_NAME test_job
-      --data_file_path /home/glue_user/workspace/test_data_raw.csv
+      --data_file_path /home/glue_user/workspace/data_batch.csv
       --output_path /home/glue_user/workspace/output.csv
     profiles:
       - manual

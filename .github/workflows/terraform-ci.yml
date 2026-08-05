@@ -40,12 +40,11 @@ jobs:
       - name: Terraform fmt check
         run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform fmt -check -recursive"
 
+      - name: Bootstrap state bucket
+        run: docker run --rm --network container:ministack amazon/aws-cli --endpoint-url=http://ministack:4566 s3 mb s3://finlake-terraform-state
+
       - name: Terraform validate
-        run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init -backend=false && terraform validate"
+        run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init && terraform validate"
 
-      - name: Terraform plan (local state, CI-only)
-        run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform init -backend=false && terraform plan"
-
-      - name: Stop containers
-        if: always()
-        run: docker compose down
+      - name: Terraform plan
+        run: docker compose run --rm --entrypoint sh terraform-init -c "cd terraform && terraform plan"
